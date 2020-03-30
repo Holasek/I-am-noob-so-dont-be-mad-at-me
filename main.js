@@ -1,5 +1,6 @@
 var cash = 1
 var generators = []
+var money = 10
 var lastUpdate = Date.now()
 
 for (var i = 0; i < 10; i++) {
@@ -22,8 +23,8 @@ function format(amount) {
 function updateGUI() {
     document.getElementById("currency").textContent = "You have " + format(money) + "€"
  for (var i = 0; i < 10; i++) {
-     var g = generators[1]
-     document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + "<br>Bought: " + g.bought + "<br>Multi: "+g.mult + "x<br>Cost: " + format(g.cost)
+     var g = generators[i]
+     document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + "<br>Bought: " + g.bought + "<br>Multi: "+format(g.mult) + "x<br>Cost: " + format(g.cost)
  }
 }
 
@@ -34,7 +35,7 @@ function ploop(diff) {
     }
 }
 
-fucntion mainloop() {
+function mainloop() {
     var diff = (Date.now() - lastUpdate) / 1000
 
     ploop(diff)
@@ -43,6 +44,6 @@ fucntion mainloop() {
     lastUpdate = Date.now()
 }
 
-setInterval(mainLoop, 100)
+setInterval(mainloop, 50)
 
 updateGUI()
